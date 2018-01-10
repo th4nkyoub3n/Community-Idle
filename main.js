@@ -78,6 +78,9 @@ function ButtonClick(id) {
                         setClicked(button,true);
                     }
                     break;
+                case "nothing":
+                    console.log("this does nothing");
+                    break;
                 default:
                     console.error("unrecognized type: " + button.type);
                     break;
