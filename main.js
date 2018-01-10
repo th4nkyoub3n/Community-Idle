@@ -122,7 +122,7 @@ function setClicked(button, disable) {
 
 function randomButton(power) {
     var ret;
-    if (player.buttonsmade < 4) { //first 3 buttons made are fixed
+    if (player.buttonsmade < 5) { //first 3 buttons made are fixed
         switch (player.buttonsmade) {
             case 0:
                 ret = {
@@ -165,6 +165,15 @@ function randomButton(power) {
                     costmult: 1.0
                 }; 
                 break;
+            case 4:
+                ret = {
+                    type: "nothing",
+                    speed: 100000 / power,
+                    speedCost: 1000,
+                    powerCost: 1000,
+                    power: 10*power
+                };
+                break;
             default:
                 console.log("Um.");
         }
@@ -191,8 +200,14 @@ function randomButton(power) {
             power: power*(1+(Math.random()*0.35)),
             target: -1,
             costmult: 1.0
+        },{
+            type: "nothing",
+            speed: 100000 / power,
+            speedCost: 1000,
+            powerCost: 1000,
+            power: 10*power*(1+(Math.random()*0.50)),
         }]
-        var ratio = [14,4,3];
+        var ratio = [14,4,3,1];
         var sum = 0,check;
         for(var i=0;i<ratio.length;i++) sum+=ratio[i];
         var rand = Math.random()*sum;
@@ -235,6 +250,10 @@ function renderButton(button) {
             ability = function() {
                 SelectTarget(button.id);
             };
+            break;
+        case "nothing":
+            desc = "It does nothing";
+            line5 = 'ID: <span class="id"></span>'
             break;
     }
     elem.innerHTML ='<b>' + desc + '</b><br>Power: <span class="power">' + button.power.toFixed(2) +'x ('+ button.powerCost.toFixed(1) +')</span><br>Speed: <span class="time">' + (button.speed / 1000).toFixed(1) +'s ('+ button.speedCost.toFixed(1) +')</span><br><span class="timeleft">0.0</span>/<span class="time">' + (button.speed / 1000).toFixed(1) + '</span><br>'+line5;
