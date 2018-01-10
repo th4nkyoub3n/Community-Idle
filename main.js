@@ -79,7 +79,18 @@ function ButtonClick(id) {
                     }
                     break;
                 case "nothing":
-                    console.log("this does nothing");
+                    setTimeout(function() {
+                        try {
+                            setClicked(button, false);
+                            //player.shards += button.power;
+                            //update("shardsbox", player.shards.toFixed(1));
+                        } catch (error) {
+                            console.error(error);
+                        }
+                    }, button.speed / speedup);
+                    button.shardPerSec=(button.power/button.speed)*1000;
+                    button.shardGain=0;
+                    setClicked(button,true);
                     break;
                 default:
                     console.error("unrecognized type: " + button.type);
