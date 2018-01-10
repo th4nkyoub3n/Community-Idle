@@ -185,7 +185,7 @@ function randomButton(power) {
                     speed: 100000 / power,
                     speedCost: 1000,
                     powerCost: 1000,
-                    power: 10*power
+                    power: power*10
                 };
                 break;
             default:
@@ -219,7 +219,7 @@ function randomButton(power) {
             speed: 100000 / power,
             speedCost: 1000,
             powerCost: 1000,
-            power: 10*power*(1+(Math.random()*0.50)),
+            power: power*10*(1+(Math.random()*0.50)),
         }]
         var ratio = [14,4,3,1];
         var sum = 0,check;
